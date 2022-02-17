@@ -10,7 +10,7 @@
       <div class="table-title" id="round-top">
           <div class="row mt-3">
             <div class="col-sm-12">
-              {% if user.is_staff %}<a href="{% url 'ItemCadastro' %}" class="btn btn-success"><i class="material-icons">&#xE147;</i> <span>Adicionar novo item</span></a> {% endif %} <h2>Itens</h2> 
+              {% if user.is_staff %}<a href="{% url 'UserCadastro' %}" class="btn btn-success"><i class="material-icons">&#xE147;</i> <span>Adicionar novo usuario</span></a>{% endif %}  <h2>Users</h2> 
             </div>
           </div>
       </div>
@@ -19,24 +19,32 @@
             <tr>
               <th class="text-center">ID</th>
               <th class="text-center">Nome</th>
-              <th class="text-center">Categoria</th>
+              <th class="text-center">CPF</th>
+              <th class="text-center">Email</th>
+              <th class="text-center">Ações</th>
             </tr>
           </thead>
           <tbody>
-            {% for item in item_list %}
+            {% for user in users_list %}
             <tr>
-              <td class="text-center">{{ item.pk }}</td>
-              <td class="text-center">{{ item.nome }}</td>
-              <td class="text-center">{{ item.categoria }}</td>
+              <td class="text-center">{{ user.pk }}</td>
+              <td class="text-center">{{ user.nome }}</td>
+              <td class="text-center">{{ user.cpf }}</td>
+              <td class="text-center">{{ user.email }}</td>
               <td class="text-center icons-td">
-                {% if user.is_staff %}    
-                <a href="{% url 'ItemEditar' item.pk %}" class="edit">
+                {% if user.is_staff %}
+                <a href="{% url 'UserDetalhes' user.pk %}" class="details">
+                  <span class="material-icons">
+                    visibility
+                  </span>
+                </a>
+                <a href="{% url 'UserEditar' user.pk %}" class="edit">
                   <i class="material-icons" data-toggle="tooltip" title="Editar">&#xE254;</i>
                 </a>
-                <a href="{% url 'ItemExcluir' item.pk %}"class="delete">
+                <a href="{% url 'UserExcluirr' user.pk %}" class="delete">
                   <i class="material-icons" data-toggle="tooltip" title="Excluir">&#xE872;</i>
-                </a>  
-                {% endif %}             
+                </a> 
+                {% endif %}               
               </td>
             </tr>
             {% endfor %}

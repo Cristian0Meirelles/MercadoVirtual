@@ -17,7 +17,7 @@ PAGAMENTO_CHOICES =(
         ('3','Pix')
     )
 
-class   User(models.Model):
+class User(models.Model):
     nome = models.CharField(max_length=96, blank = True, null = True)
     cpf = models.CharField(max_length=24, blank = True, null = True)
     email = models.EmailField( blank = True, null = True)

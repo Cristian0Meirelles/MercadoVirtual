@@ -4,13 +4,13 @@
   <link rel="stylesheet" href="{% static 'css/listas/listas.css' %}">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   {% endblock %}
-
+  
   <div class="col">
     <div class="table-wrapper" id="round">
       <div class="table-title" id="round-top">
           <div class="row mt-3">
             <div class="col-sm-12">
-              {% if user.is_staff %}<a href="{% url 'ItemCadastro' %}" class="btn btn-success"><i class="material-icons">&#xE147;</i> <span>Adicionar novo item</span></a> {% endif %} <h2>Itens</h2> 
+              {% if user.is_staff %} <a href="{% url 'PagamentoUser' %}" class="btn btn-success"><i class="material-icons">&#xE147;</i> <span>Adicionar novo produto</span></a> {% endif %} <h2>Pedidos</h2> 
             </div>
           </div>
       </div>
@@ -18,22 +18,25 @@
         <thead>
             <tr>
               <th class="text-center">ID</th>
-              <th class="text-center">Nome</th>
-              <th class="text-center">Categoria</th>
+              <th class="text-center">User</th>
+              <th class="text-center">Data</th>
             </tr>
           </thead>
           <tbody>
-            {% for item in item_list %}
+            {% for Pagamento in lista_pagamento %}
             <tr>
-              <td class="text-center">{{ item.pk }}</td>
-              <td class="text-center">{{ item.nome }}</td>
-              <td class="text-center">{{ item.categoria }}</td>
+              <td class="text-center">{{ pagamento.pk }}</td>
+              <td class="text-center">{{ pagamento.idCliente }}</td>
+              <td class="text-center">{{ pagamento.data }}</td>
+              <td class="text-center">{{ pagamento.tipo_pagamento }}</td>
               <td class="text-center icons-td">
-                {% if user.is_staff %}    
-                <a href="{% url 'ItemEditar' item.pk %}" class="edit">
-                  <i class="material-icons" data-toggle="tooltip" title="Editar">&#xE254;</i>
+                {% if user.is_staff %}
+                <a href="{% url 'PagamentoDetalhes' pedido.pk %}" class="details">
+                  <span class="material-icons">
+                    visibility
+                  </span>
                 </a>
-                <a href="{% url 'ItemExcluir' item.pk %}"class="delete">
+                <a href="{% url 'PagamentoExcluir' pedido.pk %}" class="delete">
                   <i class="material-icons" data-toggle="tooltip" title="Excluir">&#xE872;</i>
                 </a>  
                 {% endif %}             
