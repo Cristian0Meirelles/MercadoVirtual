@@ -1,4 +1,5 @@
 from django.shortcuts import render
+
 from .models import *
 from .forms import *
 
@@ -15,4 +16,3 @@ def index(request):
     }
     template_name = 'home.html'
     return render(request, template_name, context) 
-
