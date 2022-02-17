@@ -11,11 +11,16 @@ CATEGORIA_CHOICES = (
 
 )
 
+PAGAMENTO_CHOICES =(
+        ('1','Credito'),
+        ('2','Debito'),
+        ('3','Pix')
+    )
 
 class   User(models.Model):
     nome = models.CharField(max_length=96, blank = True, null = True)
     cpf = models.CharField(max_length=24, blank = True, null = True)
-    email = models.EmailField(blank = True, null = True)
+    email = models.EmailField( blank = True, null = True)
     def __str__(self):
         return self.nome
 
@@ -27,11 +32,7 @@ class Item(models.Model):
         return self.nome_item
 
 class Pagamento(models.Model):
-    PAGAMENTO_CHOICES =(
-        ('1','Credito'),
-        ('2','Debito'),
-        ('3','Pix')
-    )
+    
     idCliente = models.ForeignKey(User, on_delete=models.SET_NULL, blank = True, null = True)
     data = models.DateTimeField(auto_now_add=True, blank = True, null = True)
     preço =  models.CharField(IntegerField, max_length=24, blank=True, null = True)
@@ -44,6 +45,7 @@ class ItensSelecionados(models.Model):
     pedidos = models.ForeignKey(Pagamento, on_delete=models.CASCADE, blank = True, null = True)
     item = models.ForeignKey(Item, on_delete=models.CASCADE, blank = True, null = True)
     quantidade = models.PositiveIntegerField(default=1)
+
 
     
     
